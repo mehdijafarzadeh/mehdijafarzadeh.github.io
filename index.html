@@ -1,10 +1,376 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Typst PDF Viewer</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mehdî Jafarzadeh — Kurdish NLP &amp; Language Technologies</title>
+<meta name="description" content="Mehdî Jafarzadeh — PhD candidate at the University of Freiburg working on Kurdish natural language processing, speech technologies and digital resources for under-resourced languages.">
+<meta name="author" content="Mehdî Jafarzadeh">
+<link rel="canonical" href="https://mehdijafarzadeh.github.io/">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Mehdî Jafarzadeh — Kurdish NLP &amp; Language Technologies">
+<meta property="og:description" content="PhD candidate at the University of Freiburg. Kurdish NLP, speech processing and digital language resources.">
+<meta property="og:url" content="https://mehdijafarzadeh.github.io/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%238a5a2b'/><text x='32' y='44' font-size='34' font-family='Georgia,serif' fill='%23fff' text-anchor='middle'>M</text></svg>">
+<style>
+:root{
+  --bg:#fbfaf8; --surface:#ffffff; --border:#e6e2db;
+  --text:#1d1c1a; --muted:#6b6660; --faint:#8d8780;
+  --accent:#8a5a2b; --accent-soft:#f2ebe2;
+  --serif:ui-serif,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#141413; --surface:#1c1b19; --border:#2f2d2a;
+    --text:#eceae6; --muted:#a5a09a; --faint:#857f78;
+    --accent:#d8a45f; --accent-soft:#26221c;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:var(--sans); font-size:16px; line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:820px; margin:0 auto; padding:56px 24px 80px}
+a{color:var(--accent); text-decoration:none; border-bottom:1px solid transparent}
+a:hover{border-bottom-color:var(--accent)}
+
+/* ---------- header ---------- */
+header{display:flex; gap:28px; align-items:flex-start; flex-wrap:wrap}
+.mono{
+  flex:0 0 auto; width:92px; height:92px; border-radius:50%;
+  background:var(--accent-soft); color:var(--accent); border:1px solid var(--border);
+  display:grid; place-items:center; font-family:var(--serif);
+  font-size:34px; letter-spacing:1px;
+}
+.id{flex:1 1 320px; min-width:260px}
+h1{
+  font-family:var(--serif); font-weight:600; font-size:2.05rem;
+  line-height:1.2; margin:0 0 6px; letter-spacing:-.01em;
+}
+.role{font-size:1.02rem; color:var(--text); margin:0 0 2px}
+.affil{font-size:.94rem; color:var(--muted); margin:0}
+.affil span{color:var(--faint)}
+
+/* ---------- links ---------- */
+.links{display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 0}
+.links a{
+  font-size:.86rem; padding:5px 12px; border-radius:999px;
+  border:1px solid var(--border); background:var(--surface);
+  color:var(--text); letter-spacing:.01em;
+}
+.links a:hover{border-color:var(--accent); color:var(--accent)}
+
+/* ---------- sections ---------- */
+section{margin-top:46px}
+h2{
+  font-family:var(--sans); font-size:.76rem; font-weight:600;
+  text-transform:uppercase; letter-spacing:.13em; color:var(--faint);
+  margin:0 0 16px; padding-bottom:8px; border-bottom:1px solid var(--border);
+}
+p{margin:0 0 14px}
+.lead{font-size:1.03rem}
+
+/* ---------- tags ---------- */
+.tags{display:flex; flex-wrap:wrap; gap:7px; list-style:none; padding:0; margin:0}
+.tags li{
+  font-size:.85rem; color:var(--muted); background:var(--surface);
+  border:1px solid var(--border); border-radius:6px; padding:4px 10px;
+}
+
+/* ---------- entries ---------- */
+.entry{margin-bottom:22px}
+.entry:last-child{margin-bottom:0}
+.entry h3{
+  font-family:var(--sans); font-size:1rem; font-weight:600; margin:0 0 2px;
+}
+.meta{font-size:.87rem; color:var(--muted); margin:0 0 7px}
+.entry p.body{font-size:.94rem; color:var(--muted); margin:0}
+
+/* ---------- publication lists ---------- */
+.pubs{list-style:none; padding:0; margin:0}
+.pubs li{
+  padding:11px 0; border-top:1px solid var(--border); font-size:.94rem;
+}
+.pubs li:first-child{border-top:none; padding-top:0}
+.pubs .title{color:var(--text)}
+.pubs .note{display:block; color:var(--faint); font-size:.85rem; margin-top:2px}
+.subhead{
+  font-family:var(--serif); font-size:1.02rem; font-weight:600;
+  margin:26px 0 10px;
+}
+.subhead:first-of-type{margin-top:0}
+
+/* ---------- skills grid ---------- */
+.grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px 28px}
+.grid dt{font-size:.78rem; text-transform:uppercase; letter-spacing:.09em; color:var(--faint); margin-bottom:4px}
+.grid dd{margin:0 0 2px; font-size:.93rem; color:var(--muted)}
+dl{margin:0}
+
+/* ---------- projects ---------- */
+.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px}
+.card{
+  display:block; padding:14px 16px; border:1px solid var(--border);
+  border-radius:9px; background:var(--surface); color:inherit;
+}
+.card:hover{border-color:var(--accent); border-bottom-color:var(--accent)}
+.card .kw{
+  font-family:var(--serif); font-size:1.06rem; font-weight:600;
+  color:var(--text); display:block; line-height:1.3;
+}
+.card .en{font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; color:var(--accent); display:block; margin-top:3px}
+.card .d{font-size:.88rem; color:var(--muted); display:block; margin-top:7px; line-height:1.5}
+.host{font-size:.9rem; color:var(--muted); margin:0 0 18px}
+
+footer{
+  margin-top:56px; padding-top:20px; border-top:1px solid var(--border);
+  font-size:.85rem; color:var(--faint);
+  display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
+}
+@media (max-width:520px){
+  .wrap{padding:36px 18px 60px}
+  h1{font-size:1.72rem}
+  .mono{width:72px;height:72px;font-size:27px}
+  header{gap:18px}
+}
+</style>
 </head>
 <body>
-    <h1>My Typst Document</h1>
-    <embed src="test-typst-pdf.pdf" width="100%" height="600px" type="application/pdf">
+<div class="wrap">
+
+<header>
+  <div class="mono" aria-hidden="true">MJ</div>
+  <div class="id">
+    <h1>Mehdî Jafarzadeh</h1>
+    <p class="role">Kurdish NLP &amp; Language Technologies</p>
+    <p class="affil">PhD candidate, Albert-Ludwigs-Universität Freiburg <span>· Freiburg, Germany</span></p>
+  </div>
+</header>
+
+<nav class="links" aria-label="Profiles and contact">
+  <a href="https://scholar.google.com/citations?hl=en&amp;user=bF_h-MEAAAAJ">Google Scholar</a>
+  <a href="https://www.linkedin.com/in/mehdijafarzadeh/">LinkedIn</a>
+  <a href="https://github.com/mehdijafarzadeh">GitHub</a>
+  <a href="https://www.youtube.com/@midikani">YouTube</a>
+  <a href="https://nlpkurdi.com/en">nlpkurdi.com</a>
+  <a href="mailto:jafarzade.me@gmail.com">Email</a>
+  <a href="CV_MehdiJafarzadeh.pdf">CV (PDF)</a>
+</nav>
+
+<section id="about">
+  <h2>About</h2>
+  <p class="lead">I work at the meeting point of language technology and language preservation. My research and
+  practice centre on Kurdish — its dialects, its writing systems, and the digital infrastructure it still lacks.</p>
+  <p>I am a PhD candidate at the University of Freiburg, with an MA in Kurdish Language and Culture and a
+  background in engineering and IT. I voluntarily coordinate the development of Natural Language Processing
+  tools for Kurdish at the <strong>Mesopotamian Foundation</strong> in Amed (Diyarbakır, Turkey), building digital
+  resources that support linguistic research, revitalisation, and accessibility — a spell checker,
+  morphological analyser, verb conjugator and speech synthesis, all published free at
+  <a href="https://nlpkurdi.com/en">nlpkurdi.com</a>. I am also a member of
+  <strong>Koma Kurmancî</strong> at the Kurdish Institute of Paris, where I contribute to vocabulary collection and the
+  expansion of the Kurdish dictionary.</p>
+  <p>Alongside this, more than a decade of professional software engineering — data migration, backend systems,
+  machine learning — shapes how I approach corpora, tooling, and reproducible pipelines for low-resource languages.</p>
+</section>
+
+<section id="interests">
+  <h2>Research Interests</h2>
+  <ul class="tags">
+    <li>Natural Language Processing</li>
+    <li>Speech processing (ASR &amp; TTS)</li>
+    <li>Low-resource language technology</li>
+    <li>Kurdish dialectology</li>
+    <li>Khorasani Kurmancî</li>
+    <li>Phonology</li>
+    <li>Morphological analysis</li>
+    <li>Corpus building &amp; OCR</li>
+    <li>Lexicography</li>
+  </ul>
+</section>
+
+<section id="affiliations">
+  <h2>Language &amp; Research Work</h2>
+
+  <div class="entry">
+    <h3>Coordinator — Linguistic Studies Initiative</h3>
+    <p class="meta">Mesopotamian Foundation, Amed (Diyarbakır) · 2016 – present (volunteer; coordinator since 2022)</p>
+    <p class="body">Coordinate Kurdish language-technology development: corpus collection, spell checking,
+    morphological analysis, verb conjugation tools, and speech-to-text / text-to-speech systems — connecting
+    linguistic theory to working software.</p>
+  </div>
+
+  <div class="entry">
+    <h3>Member — Koma Kurmancî</h3>
+    <p class="meta">Kurdish Institute of Paris · 2016 – present (volunteer)</p>
+    <p class="body">Document Kurmancî vocabulary specific to the Khorasan region of Iran and contribute to
+    dictionary compilation across Kurdish, French, English, and Turkish, through biannual week-long working meetings.</p>
+  </div>
+
+  <div class="entry">
+    <h3>Researcher — MultiLX</h3>
+    <p class="meta">Multilingualism research project · University of Warwick</p>
+    <p class="body">Contribute to a research network on multilingualism, bridging technological innovation and
+    linguistic preservation for underrepresented languages.</p>
+  </div>
+</section>
+
+<section id="projects">
+  <h2>Kurdish Language Tools</h2>
+  <p class="host">Open, free tools for Kurmancî, developed with
+  <strong>Weqfa Mezopotamyayê</strong> (Mesopotamian Foundation) and published at
+  <a href="https://nlpkurdi.com/en">nlpkurdi.com</a>. Interfaces in Kurdish and English.</p>
+
+  <div class="cards">
+    <a class="card" href="https://nlpkurdi.com/en">
+      <span class="kw">Karkêş</span>
+      <span class="en">Verb Conjugator</span>
+      <span class="d">Full conjugation of Kurmancî verbs across tense, mood and person.</span>
+    </a>
+    <a class="card" href="https://nlpkurdi.com/en/spell-checker">
+      <span class="kw">Rastnûser</span>
+      <span class="en">Spell Checker</span>
+      <span class="d">Detects and corrects Kurmancî spelling against the standard orthography.</span>
+    </a>
+    <a class="card" href="https://nlpkurdi.com/en/analyzer/word-analyzer">
+      <span class="kw">Analîzkera Bêjeyan</span>
+      <span class="en">Word Analyzer</span>
+      <span class="d">Morphological analysis of a single word — structure, features, inflection.</span>
+    </a>
+    <a class="card" href="https://nlpkurdi.com/en/analyzer/text-analyzer">
+      <span class="kw">Analîzkerê Nivîsê</span>
+      <span class="en">Text Analyzer</span>
+      <span class="d">Runs the same analysis across a full passage of Kurmancî text.</span>
+    </a>
+    <a class="card" href="https://nlpkurdi.com/en/text-to-speech">
+      <span class="kw">Deqxwîn</span>
+      <span class="en">Text to Speech</span>
+      <span class="d">Synthesises spoken Kurmancî from written text.</span>
+    </a>
+    <a class="card" href="https://ferhengkurdi.com">
+      <span class="kw">Ferheng</span>
+      <span class="en">Dictionary · Kurmancî–Tirkî</span>
+      <span class="d">Searchable Kurmancî–Turkish lexical resource.</span>
+    </a>
+  </div>
+</section>
+
+<section id="publications">
+  <h2>Selected Publications &amp; Books</h2>
+
+  <p class="subhead">Academic</p>
+  <ul class="pubs">
+    <li><span class="title">Berawirdeka Dengnasî di Navbera Kurmancîya Xorasanî – Kurmancîya Bakurî da</span>
+      (A Phonological Comparison of Khorasani Kurdish and Northern Kurdish)
+      <span class="note">Folklor û Ziman 1(2), 123–134 · 2022</span></li>
+    <li><span class="title">Kurmancîya xerîbistana Xorasanê</span> — MA thesis on Khorasani Kurdish (linguistics)
+      <span class="note">2021, Turkey</span></li>
+    <li><span class="title">Zarema — Journal of Social Sciences</span> — translator and editor for literary criticism,
+      from Persian and Sorani into Kurmancî
+      <span class="note">2015–2016, Turkey</span></li>
+  </ul>
+
+  <p class="subhead">Books &amp; educational materials (Kurdish)</p>
+  <ul class="pubs">
+    <li><span class="title">Learning the Kurdish Alphabet</span><span class="note">Author · 2020, Iran</span></li>
+    <li><span class="title">Learning to Read and Write Kurdish</span>
+      <span class="note">Co-author, with Ebas Ismaîlî, Muhemed Teqevî, Dîyar Elînîya · 2017, Iran</span></li>
+    <li><span class="title">Dictionary of Legal Terminology</span><span class="note">Collaborator · 2019, Turkey</span></li>
+    <li><span class="title">Kurdish Spelling Guide</span><span class="note">Collaborator · 2019, Turkey</span></li>
+  </ul>
+
+  <p class="subhead">Literary translation</p>
+  <ul class="pubs">
+    <li><span class="title">The Little Prince</span> — Antoine de Saint-Exupéry
+      <span class="note">Persian → Kurdish · 2015, Iran</span></li>
+    <li><span class="title">The Little Black Fish</span> — Samad Behrangi
+      <span class="note">Persian → Kurdish · 2018, Turkey</span></li>
+    <li><span class="title">The Dead Do Not Sleep</span> — Helîm Yusiv
+      <span class="note">Kurdish → Persian · 2014, Iran</span></li>
+    <li><span class="title">Poetry of Jafargholi Zangeli (Cafer-Quli)</span> — transcription, with Mihemed Salih Bedirxan
+      <span class="note">2018, Turkey</span></li>
+    <li><span class="title">Life and Skill</span> — anonymous short stories
+      <span class="note">English → Kurdish · 2020, Iran</span></li>
+    <li><span class="title">Cultural Identity and Kurdish Cinema</span> — Khosro Sina
+      <span class="note">Persian → Kurdish · unpublished</span></li>
+  </ul>
+</section>
+
+<section id="engineering">
+  <h2>Engineering &amp; Data Science</h2>
+
+  <div class="entry">
+    <h3>Full-stack Developer — Agricultural Land Management Platform</h3>
+    <p class="meta">Sept 2022 – March 2025</p>
+    <p class="body">Built a web application for managing agricultural land information with geo-integration;
+    backend and frontend, testing, and CI/CD. Java, Spring, JSF, PrimeFaces, JavaScript, BIRT, PostgreSQL.</p>
+  </div>
+
+  <div class="entry">
+    <h3>ETL Developer — CMS Migration</h3>
+    <p class="meta">May 2022 – Sept 2022</p>
+    <p class="body">Led data migration from a legacy Typo3 CMS to Liferay DXP, reimplementing custom extensions
+    and migrating sites, forms, and intranet content. Java, Talend Open Studio, Liferay DXP 7.4, Docker.</p>
+  </div>
+
+  <div class="entry">
+    <h3>Developer — NoSQL Evaluation (R&amp;D)</h3>
+    <p class="meta">USU Digital Consulting · Dec 2021 – May 2022</p>
+    <p class="body">Evaluated NoSQL technologies against concrete use cases, produced a selection matrix and
+    reference implementations, and co-authored a data-modelling best-practice guide.
+    ArangoDB, MongoDB, Redis, Spring Boot.</p>
+  </div>
+
+  <div class="entry">
+    <h3>Senior Electrical Engineer</h3>
+    <p class="meta">Energy supplier · 2006 – 2017</p>
+    <p class="body">Power plant monitoring and final-stage commissioning tests: installation, pre-commissioning,
+    testing, and fault analysis. Siemens S7 PLC, LOGO.</p>
+  </div>
+
+  <p style="font-size:.9rem;color:var(--muted);margin-top:20px">
+    Writing: <em>Schema Design and Relationships in NoSQL Document Databases</em> and
+    <em>Rust vs Java: Choosing the Right Programming Language</em> — USU Digital Consulting blog.
+  </p>
+</section>
+
+<section id="skills">
+  <h2>Skills</h2>
+  <dl class="grid">
+    <div>
+      <dt>Languages (programming)</dt>
+      <dd>Python, Java, Rust, JavaScript, SQL, Bash</dd>
+    </div>
+    <div>
+      <dt>NLP &amp; ML</dt>
+      <dd>spaCy, scikit-learn, TensorFlow, Keras, Pandas, NumPy</dd>
+    </div>
+    <div>
+      <dt>Data &amp; storage</dt>
+      <dd>PostgreSQL, MySQL, MongoDB, SurrealDB, Redis, ETL / Talend</dd>
+    </div>
+    <div>
+      <dt>Platform</dt>
+      <dd>Docker, Git, AWS, Tomcat, Spring Boot, Liferay DXP</dd>
+    </div>
+    <div>
+      <dt>Natural languages</dt>
+      <dd>Kurmancî, Soranî, Persian, German, English · Turkish, Arabic</dd>
+    </div>
+    <div>
+      <dt>Practice</dt>
+      <dd>Corpus &amp; OCR pipelines, lexicography, Agile / Scrum</dd>
+    </div>
+  </dl>
+</section>
+
+<footer>
+  <span>Mehdî Jafarzadeh · Freiburg, Germany</span>
+  <span><a href="mailto:jafarzade.me@gmail.com">jafarzade.me@gmail.com</a></span>
+</footer>
+
+</div>
 </body>
 </html>
