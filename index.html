@@ -40,11 +40,14 @@ a:hover{border-bottom-color:var(--accent)}
 
 /* ---------- header ---------- */
 header{display:flex; gap:28px; align-items:flex-start; flex-wrap:wrap}
-.mono{
-  flex:0 0 auto; width:92px; height:92px; border-radius:50%;
-  background:var(--accent-soft); color:var(--accent); border:1px solid var(--border);
-  display:grid; place-items:center; font-family:var(--serif);
-  font-size:34px; letter-spacing:1px;
+.portrait{
+  flex:0 0 auto; width:112px; height:112px; border-radius:50%;
+  object-fit:cover; display:block;
+  border:1px solid var(--border);
+  box-shadow:0 1px 3px rgba(0,0,0,.10), 0 8px 24px -12px rgba(0,0,0,.22);
+}
+@media (prefers-color-scheme:dark){
+  .portrait{box-shadow:0 1px 3px rgba(0,0,0,.5), 0 8px 24px -12px rgba(0,0,0,.7)}
 }
 .id{flex:1 1 320px; min-width:260px}
 h1{
@@ -133,7 +136,7 @@ footer{
 @media (max-width:520px){
   .wrap{padding:36px 18px 60px}
   h1{font-size:1.72rem}
-  .mono{width:72px;height:72px;font-size:27px}
+  .portrait{width:84px;height:84px}
   header{gap:18px}
 }
 </style>
@@ -142,7 +145,10 @@ footer{
 <div class="wrap">
 
 <header>
-  <div class="mono" aria-hidden="true">MJ</div>
+  <img class="portrait" src="assets/mehdi-400.jpg"
+       srcset="assets/mehdi-400.jpg 400w, assets/mehdi-800.jpg 800w"
+       sizes="112px" width="400" height="400"
+       alt="Portrait of Mehdî Jafarzadeh">
   <div class="id">
     <h1>Mehdî Jafarzadeh</h1>
     <p class="role">Kurdish NLP &amp; Language Technologies</p>
@@ -172,7 +178,7 @@ footer{
   <a href="https://nlpkurdi.com/en">nlpkurdi.com</a>. I am also a member of
   <strong>Koma Kurmancî</strong> at the Kurdish Institute of Paris, where I contribute to vocabulary collection and the
   expansion of the Kurdish dictionary.</p>
-  <p>Alongside this, more than a decade of professional software engineering — data migration, backend systems,
+  <p>Alongside this, my professional work as a software engineer — data migration, backend systems,
   machine learning — shapes how I approach corpora, tooling, and reproducible pipelines for low-resource languages.</p>
 </section>
 
@@ -268,7 +274,7 @@ footer{
     <li><span class="title">Kurmancîya xerîbistana Xorasanê</span> — MA thesis on Khorasani Kurdish (linguistics)
       <span class="note">2021, Turkey</span></li>
     <li><span class="title">Zarema — Journal of Social Sciences</span> — translator and editor for literary criticism,
-      from Persian and Sorani into Kurmancî
+      from Farsi and Sorani into Kurmancî
       <span class="note">2015–2016, Turkey</span></li>
   </ul>
 
@@ -284,17 +290,17 @@ footer{
   <p class="subhead">Literary translation</p>
   <ul class="pubs">
     <li><span class="title">The Little Prince</span> — Antoine de Saint-Exupéry
-      <span class="note">Persian → Kurdish · 2015, Iran</span></li>
+      <span class="note">Farsi → Kurdish · 2015, Iran</span></li>
     <li><span class="title">The Little Black Fish</span> — Samad Behrangi
-      <span class="note">Persian → Kurdish · 2018, Turkey</span></li>
+      <span class="note">Farsi → Kurdish · 2018, Turkey</span></li>
     <li><span class="title">The Dead Do Not Sleep</span> — Helîm Yusiv
-      <span class="note">Kurdish → Persian · 2014, Iran</span></li>
+      <span class="note">Kurdish → Farsi · 2014, Iran</span></li>
     <li><span class="title">Poetry of Jafargholi Zangeli (Cafer-Quli)</span> — transcription, with Mihemed Salih Bedirxan
       <span class="note">2018, Turkey</span></li>
     <li><span class="title">Life and Skill</span> — anonymous short stories
       <span class="note">English → Kurdish · 2020, Iran</span></li>
     <li><span class="title">Cultural Identity and Kurdish Cinema</span> — Khosro Sina
-      <span class="note">Persian → Kurdish · unpublished</span></li>
+      <span class="note">Farsi → Kurdish · unpublished</span></li>
   </ul>
 </section>
 
@@ -357,7 +363,7 @@ footer{
     </div>
     <div>
       <dt>Natural languages</dt>
-      <dd>Kurmancî, Soranî, Persian, German, English · Turkish, Arabic</dd>
+      <dd>Kurdish - Kurmancî, Soranî, Farsi, German, English</dd>
     </div>
     <div>
       <dt>Practice</dt>
